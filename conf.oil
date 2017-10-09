@@ -65,7 +65,7 @@ CPU mySystem {
 	};
 
 	TASK Task1 {
-		PRIORITY = 6;
+		PRIORITY = 5;
 		STACK = SHARED;
 		SCHEDULE = FULL;
 	};

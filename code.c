@@ -6,24 +6,28 @@
  */
 
 
+// Include libraries
 #include "ee.h"
 #include "ee_irq.h"
 #define FCY 40000000UL
 #include <libpic30.h>
 
+
+// Global variables
 unsigned char status_task1=0;
 unsigned char status_task2=0;
 unsigned char status_task3=0;
+
 unsigned char status_task1_ant=0;
 unsigned char status_task2_ant=0;
 unsigned char status_task3_ant=0;
+
 unsigned int exec_time_task1=0;
 unsigned int exec_time_task2=0;
 unsigned int exec_time_task3=0;
+
 static unsigned char BufferOut[80];
 static unsigned int my_time=0;
-
-
 
 
 // MIPS40 - Run CPU at maximum speed 40MIPS (25ns), oscillator with PLL at 80Mhz
@@ -105,7 +109,7 @@ void put_LCD_initial_message()
 	EE_lcd_putc('L');
 	EE_lcd_putc('a');
 	EE_lcd_putc('b');
-	EE_lcd_putc('5');
+	EE_lcd_putc('4');
 
 }
 
@@ -188,7 +192,7 @@ TASK(Task1)
 		status_task3=1;
 
 
-	__delay_ms(5000);
+	__delay_ms(exec_time_task1);
 
 	status_task1=0;
 	status_task2=status_task2_ant;
@@ -209,7 +213,7 @@ TASK(Task2)
 	else if(status_task3==2)
 		status_task3=1;
 
-	__delay_ms(2500);
+	__delay_ms(exec_time_task2);
 
 	status_task1=status_task1_ant;
 	status_task2=0;
@@ -230,7 +234,7 @@ TASK(Task3)
 	else if(status_task2==2)
 		status_task2=1;
 
-	__delay_ms(2500);
+	__delay_ms(exec_time_task3);
 
 	status_task1=status_task1_ant;
 	status_task2=status_task2_ant;

@@ -7,10 +7,10 @@
 
 
 // Include libraries
-#include "ee.h"
-#include "ee_irq.h"
-#define FCY 40000000UL
-#include <libpic30.h>
+#include "ee.h"		   //Cabecera
+#include "ee_irq.h"	   //Cabecera
+#define FCY 40000000UL //Frecuencia de trabajo
+#include <libpic30.h>  //Libreria incluida
 
 
 // Global variables
